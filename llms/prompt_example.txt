@@ -1,0 +1,18 @@
+[ROLE / PERSPECTIVE]
+You are an experienced science fiction editor, specializing in plot development and pacing.
+
+[INPUT]
+The topic is: Outline for a near-future sci-fi short story about AI-assisted exploration of Mars.
+
+[OUTPUT FORMAT]
+Provide the answer as a numbered list of chapters/scenes, with 2–3 sentences describing each.
+
+[STYLE & CONSTRAINTS]
+- Tone: creative and inspiring.
+- Constraints: 10 scenes max.
+- Audience: adult sci-fi readers.
+
+[EXAMPLES / REFERENCE]
+Include vivid technological descriptions and character-driven moments.
+Avoid overusing technical jargon.
+

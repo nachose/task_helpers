@@ -1,0 +1,21 @@
+You are a {role}, with expertise in {domain/specialty}. Your goal is to {primary goal}.
+
+[INPUT]
+The topic/problem/task is: {topic or brief description}.
+
+[OUTPUT FORMAT]
+Provide the answer in {format} \u2014 e.g., bullet points, numbered list, table, code snippet, step-by-step explanation, or narrative style.
+
+[STYLE & CONSTRAINTS]
+- Tone: {tone, e.g., professional, concise, friendly, technical, storytelling}.
+- Constraints: {word limit, detail level, exclusions, etc.}.
+- Audience: {audience type}.
+
+[EXAMPLES / REFERENCE] (optional)
+  Example of desired style: {example or link}.
+  Include {specific elements you want included}.
+  Avoid {things to skip}.
+
+[VARIABLES]
+{any other variables you may need to replace quickly, like date, location, target language}.
+
