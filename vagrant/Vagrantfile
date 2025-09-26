@@ -1,0 +1,53 @@
+Vagrant.configure("2") do |config|
+  # Ubuntu noble.
+  # config.vm.box = "debian-dev/trixie64-gnome"
+  config.vm.box = "boxen/debian-13"
+  config.vm.box_check_update = true  # Check for box updates
+  
+  # VM name (shows in VirtualBox/Hyper-V)
+  config.vm.hostname = "my-ubuntu-vm"
+
+  # Forward ssh key from this machine.
+  config.ssh.forward_agent = true
+
+  # Networking
+  config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh"
+  if ENV['HOME_MODE'] == '1'
+    config.vm.network "public_network",
+      bridge: "Intel(R) Ethernet Connection",
+      use_dhcp_assigned_default_route: true
+  end
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "4096"
+    vb.cpus = 3       # 3 CPU cores
+    vb.name = "MyUbuntuVM"
+
+    vb.customize ["modifyvm", :id, "--nictype1", "82540EM"]
+    vb.customize ["modifyvm", :id, "--nictype2", "82540EM"]
+    vb.customize ["modifyvm", :id, "--macaddress1", "0800270A142E"]
+    vb.customize ["modifyvm", :id, "--macaddress2", "0800272BB5DB"]
+
+    if ENV['HOME_MODE'] == '1'
+      vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+    end
+  end
+  
+  # Share the current folder (your repo) with the VM at /vagrant inside it
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"  # Or "shared" for Hyper-V
+
+  # Network: Forward port 80 from VM to host (e.g., for web servers); add more as needed
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Provisioning: install tools on first boot
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update -y
+    apt-get upgrade -y
+    apt-get install -y build-essential git curl vim htop
+    git clone --recurse git@github.com:nachose/my_config.git
+    cd my_config
+    ./install.sh 0
+  SHELL
+end
+
