@@ -1,0 +1,2 @@
+prompt = "Please read from disk the file for chapter {{args}}, then find the next section that is still not developed, in outline form, and then develop it. Now replace that part of the outline with the developed section, and finally write the updated outline back to disk."
+description = "Starts development in the next undeveloped section of the chapter specified in args."
