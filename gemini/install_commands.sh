@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-ln -s ./commands/ ~/.gemini/commands
+unlink ~/.gemini/commands
+ln -s $(readlink -f commands) ~/.gemini/commands
